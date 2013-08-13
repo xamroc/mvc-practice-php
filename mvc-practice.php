@@ -15,6 +15,10 @@ class View {
 		$this->controller = $controller;
 		$this->model = $model;
 	}
+	
+	public function output() {
+		return '<h3>' . $this->model->text . '</h3>';
+	}
 }
 
 class Controller {
