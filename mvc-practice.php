@@ -17,7 +17,7 @@ class View {
 	}
 	
 	public function output() {
-		return '<h3>' . $this->model->text . '</h3>';
+		return '<a href="mvc-practice.php?action=textClicked">' . $this->model->text . '</a>';
 	}
 }
 
@@ -27,6 +27,10 @@ class Controller {
 	public function __construct(Model $model) {
 		$this->model = $model;
 	}
+
+	public function textClicked() {
+		$this->model->text = 'Goodbye Cruel World!';
+	}
 }
 
 //Start MVC
@@ -34,6 +38,7 @@ $model = new Model();
 
 $controller = new Controller($model);
 $view = new View($controller, $model);
+if (isset($_GET['action'])) $controller->{$_GET['action']}();
 echo $view->output();
 
 ?>
